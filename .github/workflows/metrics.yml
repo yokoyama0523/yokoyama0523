@@ -21,7 +21,23 @@ jobs:
           template: classic
           base: header, activity, community, repositories, metadata
           config_timezone: Asia/Tokyo
-          theme: github_dark
+
+          extras_css: |
+            svg { background: #0d1117; }
+            .field, text, tspan { color: #c9d1d9 !important; fill: #c9d1d9; }
+            .field svg { fill: #8b949e !important; }
+            h1, h2, h3 { color: #58a6ff !important; }
+            h1 svg, h2 svg, h3 svg { fill: #58a6ff !important; }
+            .calendar text, .calendar tspan { fill: #8b949e; }
+          extras_js: |
+            for (const {a, b} of [
+              {a:"#ebedf0", b:"#161b22"},
+              {a:"#9be9a8", b:"#0e4429"},
+              {a:"#40c463", b:"#006d32"},
+              {a:"#30a14e", b:"#26a641"},
+              {a:"#216e39", b:"#39d353"},
+            ])
+            document.querySelectorAll(`svg [fill="${a}"]`).forEach(node => node.setAttribute("fill", b))
 
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
